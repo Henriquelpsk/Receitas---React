@@ -2,6 +2,7 @@ import itens from 'data/cardapio.json';
 import style from './Itens.module.scss';
 import Item from './Item';
 import { useEffect, useState } from 'react';
+import { TCardapio } from 'types/Prato';
 
 interface props {
 	busca: string,
@@ -24,11 +25,11 @@ export default function Itens({ busca, filtro, ordenador }: props) {
     return true;
   }
 
-  function ordenarPropriedadeCrescente(novalista : typeof lista, propriedade: 'size' | 'serving' | 'price'){
+  function ordenarPropriedadeCrescente(novalista : TCardapio, propriedade: 'size' | 'serving' | 'price'){
     return novalista.sort((a, b) => a[propriedade] > b[propriedade] ? 1 : -1);
   }
 
-  function ordenar(novaLista : typeof lista){
+  function ordenar(novaLista :TCardapio){
     switch(ordenador){
     case 'porcao':
       return ordenarPropriedadeCrescente(novaLista,'size');
