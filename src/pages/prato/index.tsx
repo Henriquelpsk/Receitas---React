@@ -1,11 +1,12 @@
 import styles from './Item.module.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 import cardapio from 'data/cardapio.json';
-import TagsPrato from 'components/TagsPrato';
-import NotFound from 'pages/NotFoud';
+import { lazy } from 'react';
+
+const TagsPrato = lazy(() => import('components/TagsPrato'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 export default function Prato() {
-  console.log(useParams());
   const { id } = useParams();
   const prato = cardapio.find((item => (item.id === Number(id))));
   if (!prato){
